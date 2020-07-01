@@ -1,0 +1,51 @@
+$primary: #00b140;
+$secundary: #898d8d;
+$success: #91d400;
+$info: #6b4c2a;
+$warning: #ae8156;
+$danger: #ffc200;
+
+.container_body {
+    margin-top: 4rem;
+}
+
+.centrar {
+    text-align: center;
+}
+
+h2 {
+    display: inline-block;
+    position: relative;
+}
+
+h2::after,h2::before {
+    content:'';
+    position: absolute;
+    width: 200px;
+    height: 3px;
+    background-color: #91d400;
+    top: 0.6em;
+}
+
+h2::before {
+    left: -220px;
+}
+
+h2::after {
+    right: -220px;
+}
+
+.footer {
+    background-color: #898d8d;
+}
+
+.carousel {
+    height: 66.67%;
+    margin-bottom: 0; /* ¿por qué, carousel, por qué? */
+  }
+  .carousel-inner, .carousel-inner > .item, .carousel-inner > .item > img {
+    height: 100%;
+  }
+
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap-vue/src/index.scss";
