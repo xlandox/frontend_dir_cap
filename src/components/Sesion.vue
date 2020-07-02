@@ -25,7 +25,7 @@
         </b-row>
         <b-row class="justify-content-center">
             <b-button variant="primary" class="mt-5 mr-2">Iniciar</b-button>
-            <b-button variant="success" class="mt-5 mr-2">Registrarse</b-button>
+            <b-button variant="success" class="mt-5 mr-2" :to="{name:'Registro'}">Registrarse</b-button>
         </b-row>
     </div>
 </template>
