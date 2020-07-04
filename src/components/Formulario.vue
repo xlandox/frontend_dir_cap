@@ -6,7 +6,7 @@
             </b-col>
         </b-row>
         <b-row class="justify-content-center">
-            <b-col sm="6">
+            <b-col sm="8">
                 <form>
                     <label for="nom">Nombre</label>
                     <input type="text" id="nom" class="form-control mb-2" placeholder="Nombre" v-model="usuario.nom">
