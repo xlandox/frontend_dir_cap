@@ -1,9 +1,8 @@
 <template>
     <div class="admin">
-        <Title msg="Admin"/>
         <b-row class="mb-5">
             <b-col cols="12">
-                <b-button v-b-toggle.sidebar-no-header variant="success">Menú</b-button>
+                <b-button pill v-b-toggle.sidebar-no-header variant="success" class="mt-5">Menú del Administrador</b-button>
                 <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-header shadow>
                     <template v-slot:default="{ hide }">
                         <div class="p-3">
@@ -18,7 +17,7 @@
                                     <b-nav-item @click="hide">Noticias</b-nav-item>
                                 </b-nav>
                             </nav>
-                            <b-button variant="warning" block @click="hide">Cerrar Menú</b-button>
+                            <b-button pill variant="warning" block @click="hide">Cerrar Menú</b-button>
                         </div>
                     </template>
                 </b-sidebar>
