@@ -39,13 +39,5 @@ h2::after {
     background-color: #898d8d;
 }
 
-.carousel {
-    height: 66.67%;
-    margin-bottom: 0; /* ¿por qué, carousel, por qué? */
-  }
-  .carousel-inner, .carousel-inner > .item, .carousel-inner > .item > img {
-    height: 100%;
-  }
-
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/bootstrap-vue/src/index.scss";
