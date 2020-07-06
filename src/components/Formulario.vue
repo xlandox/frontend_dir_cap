@@ -1,75 +1,104 @@
 <template>
     <div>
-        <b-row>
-            <b-col cols="12">
-                <h3 class="mb-3">Registrar nuevo usuario:</h3>
-            </b-col>
-        </b-row>
-        <b-row class="justify-content-center">
-            <b-col sm="8">
-                <form>
-                    <label for="nom">Nombre</label>
-                    <input type="text" id="nom" class="form-control mb-2" placeholder="Nombre" v-model="usuario.nom">
-                    <label for="a_pat">Apellido Paterno</label>
-                    <input type="text" id="a_pat" class="form-control mb-2" placeholder="Apellido paterno" v-model="usuario.a_pat">
-                    <label for="a_mat">Apellido Materno</label>
-                    <input type="text" id="a_mat" class="form-control mb-2" placeholder="Apellido materno" v-model="usuario.a_mat">
-                    <label for="genero">Género</label>
-                    <select class="form-control mb-2" id="genero" v-model="usuario.genero">
-                        <option>Masculino</option>
-                        <option>Femenino</option>
-                    </select>
-                    <label for="f_nac">Fecha de nacimiento</label>
-                    <input type="date" id="f_nac" max="3000-12-31" min="1000-01-01" class="form-control mb-2" v-model="usuario.f_nac">
-                    <label for="alca">Alcaldía</label>
-                    <select class="form-control mb-2" id="alca" v-model="usuario.alca">
-                        <option>Álvaro Obregón</option>
-                        <option>Azcapotzalco</option>
-                        <option>Benito Juárez</option>
-                        <option>Coyoacán</option>
-                        <option>Cuajimalpa</option>
-                        <option>Cuauhtémoc</option>
-                        <option>Gustavo A. Madero</option>
-                        <option>Iztacalco</option>
-                        <option>Iztapalapa</option>
-                        <option>Magdalena Contreras</option>
-                        <option>Miguel Hidalgo</option>
-                        <option>Milpa Alta</option>
-                        <option>Tláhuac</option>
-                        <option>Tlalpan</option>
-                        <option>Venustiano Carranza</option>
-                        <option>Xochimilco</option>
-                    </select>
-                    <label for="col">Colonia</label>
-                    <input type="text" class="form-control mb-2" id="col" placeholder="Colonia" v-model="usuario.col">
-                    <label for="calle">Calle</label>
-                    <input type="text" class="form-control mb-2" id="calle" placeholder="Calle" v-model="usuario.calle">
-                    <label for="tel">Teléfono</label>
-                    <input type="number" class="form-control mb-2" id="tel" placeholder="Teléfono" v-model="usuario.tel">
-                    <label for="esc">Escolaridad</label>
-                    <select class="form-control mb-2" id="esc" v-model="usuario.esc">
-                        <option>Primaria</option>
-                        <option>Secundaria</option>
-                        <option>Preparatoria</option>
-                        <option>Universidad</option>
-                    </select>
-                    <label for="ocup">Ocupación</label>
-                    <input type="text" class="form-control mb-2" id="ocup" placeholder="Ocupación" v-model="usuario.ocup">
-                    <label for="correo">Correo</label>
-                    <input type="text" class="form-control mb-2" id="correo" placeholder="correo@dominio.com" v-model="usuario.correo">
-                    <label for="contra">Contraseña</label>
-                    <input type="password" class="form-control mb-2" id="contra" placeholder="Contraseña" v-model="usuario.contra">
-                    <label for="rol">Rol</label>
-                    <select class="form-control mb-3" id="rol" v-model="usuario.rol">
-                        <option>Usuario</option>
-                        <option>Exponente</option>
-                        <option>Administrador</option>
-                        <option>SuperUsuario</option>
-                    </select>
-                    <b-button variant="primary" block class="my-2" @click="alerta()">Agregar</b-button>
-                </form>
-            </b-col>
-        </b-row>
+        <b-form @submit="agregarUsuario()">
+            <b-form-group
+                id="Nombre"
+                label="Nombre"
+                label-for="nom"
+            >
+                <b-form-input
+                    id="nom"
+                    v-model="usuario.nom"
+                    type="text"
+                    placeholder="Escribe tu nombre"
+                ></b-form-input> 
+            </b-form-group>  
+            <b-form-group
+                id="Apellido P."
+                label="Apellido Paterno"
+                label-for="a_pat"
+            >
+                <b-form-input
+                    id="a_pat"
+                    v-model="usuario.a_pat"
+                    type="text"
+                    placeholder="Escribe tu apellido paterno"
+                ></b-form-input>    
+            </b-form-group>
+            <b-form-group
+                id="Apellido M."
+                label="Apellido Materno"
+                label-for="a_mat"
+            >
+                <b-form-input
+                    id="a_mat"
+                    v-model="usuario.a_mat"
+                    type="text"
+                    required
+                    placeholder="Escribe tu apellido materno"
+                ></b-form-input>  
+            </b-form-group>  
+            <b-form-group
+                id="Fecha_n"
+                label="Fecha de nacimiento"
+                label-for="f_nac"
+            >
+                <b-form-datepicker 
+                    id="f_nac" 
+                    v-model="usuario.f_nac" 
+                    placeholder="Selecciona tu fecha de nacimiento" 
+                    local="es"
+                ></b-form-datepicker>
+            </b-form-group>
+            <b-form-group
+                id="Alcaldía"
+                label="Alcaldía"
+                label-for="alca"
+            >
+                <b-form-select 
+                    id="alca"
+                    v-model="usuario.alca" 
+                    :options="alcaldias"
+                ></b-form-select> 
+            </b-form-group> 
+            <b-form-group
+                id="Teléfono"
+                label="Teléfono"
+                label-for="tel"
+            >
+                <b-form-input
+                    id="tel"
+                    v-model="usuario.tel"
+                    type="number"
+                    placeholder="Ingrese su número"
+                ></b-form-input>  
+            </b-form-group> 
+            <b-form-group
+                id="Correo"
+                label="Correo Electrónico"
+                label-for="correo"
+            >
+                <b-form-input
+                    id="correo"
+                    v-model="usuario.correo"
+                    type="email"
+                    placeholder="Eje. correo@dominio.com"
+                ></b-form-input> 
+            </b-form-group>  
+            <b-form-group
+                id="Contraseña"
+                label="Contraseña"
+                label-for="contra"
+            >
+                <b-form-input
+                    id="contra"
+                    v-model="usuario.contra"
+                    type="password"
+                    placeholder="Escribe tu contraseña"
+                ></b-form-input> 
+            </b-form-group>  
+            <b-button type="submit" block variant="primary">Agregar</b-button>
+        </b-form>
     </div>
 </template>
 
@@ -82,19 +111,40 @@
                     nom: '',
                     a_pat: '',
                     a_mat: '',
-                    genero: '',
-                    f_nac:  '',
                     alca: '',
-                    col: '',
-                    calle: '',
                     tel: '',
-                    esc: '',
-                    ocup: '',
                     correo: '',
-                    contra: '',
-                    rol: ''
-                }
+                    contra: ''
+                },
+                alcaldias: [
+                    { value: null, text: 'Selecciona una alcaldía', disabled: true },
+                    { value: 'Álvaro Obregón', text: 'Álvaro Obregón' },
+                    { value: 'Azcapotzalco', text: 'Azcapotzalco' },
+                    { value: 'Benito Juárez', text: 'Benito Juárez' },
+                    { value: 'Coyoacán', text: 'Coyoacán' },
+                    { value: 'Cuajimalpa de Morelos', text: 'Cuajimalpa de Morelos'},
+                    { value: 'Cuauhtémoc', text: 'Cuauhtémoc'},
+                    { value: 'Gustavo A. Madero', text: 'Gustavo A. Madero'},
+                    { value: 'Iztacalco', text: 'Iztacalco'},
+                    { value: 'Iztapalapa', text: 'Iztapalapa'},
+                    { value: 'Magdalena Contreras', text: 'Magdalena Contreras'},
+                    { value: 'Miguel Hidalgo', text: 'Miguel Hidalgo'},
+                    { value: 'Milpa Alta', text: 'Milpa Alta'},
+                    { value: 'Tláhuac	', text: 'Tláhuac	'},
+                    { value: 'Tlalpan', text: 'Tlalpan'},
+                    { value: 'Venustiano Carranza', text: 'Venustiano Carranza'},
+                    { value: 'Xochimilco', text: 'Xochimilco'}
+                ]
             }
         },
+        methods: {
+            agregarUsuario(){
+                this.axios.post('/nuevo_usuario', this.usuario).then(res => {
+                    this.usuario.push(res.data);
+                }).catch(e => {
+                    console.log(e.response);
+                })
+            }
+        }
     }
 </script>

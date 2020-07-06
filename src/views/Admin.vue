@@ -24,21 +24,18 @@
             </b-col>
         </b-row>
         <Table_u></Table_u>
-        <Formulario></Formulario>
     </div>
 </template>
 
 <script>
     import Title from '@/components/Title.vue'
     import Table_u from '@/components/Table_u.vue'
-    import Formulario from '@/components/Formulario.vue'
 
     export default {
         name: 'Admin',
         components: {
             Title,
-            Table_u,
-            Formulario
+            Table_u
         }
     }
 </script>
