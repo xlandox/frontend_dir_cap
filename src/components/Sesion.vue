@@ -8,6 +8,7 @@
                 >
                     <b-form-input
                         type="email"
+                        v-model=""
                         required
                         placeholder="Introduzca su correo"
                     ></b-form-input>
@@ -17,6 +18,7 @@
                 >
                     <b-form-input
                         type="password"
+                        v-model=""
                         required
                         placeholder="Introduzca su contraseña"
                     ></b-form-input>
