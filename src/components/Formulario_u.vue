@@ -104,6 +104,18 @@
                     placeholder="Escribe tu contraseña"
                 ></b-form-input> 
             </b-form-group>  
+            <b-form-group
+                id="Rol"
+                label="Rol"
+                label-for="rol"
+            >
+                <b-form-select 
+                    id="rol"
+                    v-model="usuario.rol" 
+                    :options="roles"
+                    required
+                ></b-form-select> 
+            </b-form-group> 
             <b-button type="submit" block variant="primary">Agregar</b-button>
         </b-form>
     </div>
@@ -111,7 +123,7 @@
 
 <script>
     export default {
-        name: 'Formulario',
+        name: 'Formulario_u',
         data() {
             return {
                 usuario: {
@@ -122,7 +134,8 @@
                     alca: '',
                     tel: '',
                     correo: '',
-                    contra: ''
+                    contra: '',
+                    rol: ''
                 },
                 alcaldias: [
                     { value: null, text: 'Selecciona una alcaldía', disabled: true },
@@ -142,6 +155,12 @@
                     { value: 'Tlalpan', text: 'Tlalpan'},
                     { value: 'Venustiano Carranza', text: 'Venustiano Carranza'},
                     { value: 'Xochimilco', text: 'Xochimilco'}
+                ],
+                roles: [
+                    { value: null, text: 'Selecciona el rol', disabled: true },
+                    { value: 'Usuario', text: 'Usuario' },
+                    { value: 'Administrador', text: 'Administrador' },
+                    { value: 'SuperUsuario', text: 'SuperUsuario' }
                 ]
             }
         },

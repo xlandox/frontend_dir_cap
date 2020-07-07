@@ -11,7 +11,7 @@
                         Inserte los datos:
                     </template>
                     <div>
-                    <Formulario></Formulario>
+                    <Formulario_u></Formulario_u>
                     </div>
                     <b-button class="mt-3" block @click="$bvModal.hide('modal')">Cerrar</b-button>
                 </b-modal>
@@ -30,6 +30,7 @@
                             <th scope="col">Teléfono</th>
                             <th scope="col">Correo</th>
                             <th scope="col">Contraseña</th>
+                            <th scope="col">Rol</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +43,7 @@
                             <td>{{item.tel}}</td>
                             <td>{{item.correo}}</td>
                             <td>{{item.contra}}</td>
+                            <td>{{item.rol}}</td>
                             <td class="d-flex justify-content-center">
                                 <b-button variant="danger" @click="cambiarEditar(item._id)" class="mr-1">Editar</b-button>
                                 <b-button variant="warning" @click="eliminarUsuario(item._id)">Eliminar</b-button>
@@ -156,7 +158,19 @@
                             placeholder="Escribe tu contraseña"
                         ></b-form-input> 
                     </b-form-group>  
-                    <b-button type="submit" variant="primary" class="mr-2">Agregar</b-button>
+                    <b-form-group
+                        id="Rol"
+                        label="Rol"
+                        label-for="rol"
+                    >
+                        <b-form-select 
+                            id="rol"
+                            v-model="usuario_e.rol" 
+                            :options="roles"
+                            required
+                        ></b-form-select> 
+                    </b-form-group> 
+                    <b-button type="submit" variant="primary" class="mr-2">Editar</b-button>
                     <b-button type="submit" variant="warning" @click="editar = false">Cancelar</b-button>
                 </b-form>
             </b-col>
@@ -165,12 +179,12 @@
 </template>
 
 <script>
-    import Formulario from '@/components/Formulario.vue'
+    import Formulario_u from '@/components/Formulario_u.vue'
 
     export default {
         name: 'Table_u',
         components: {
-            Formulario
+            Formulario_u
         },
         data() {
             return {
@@ -183,7 +197,8 @@
                     alca: '',
                     tel: '',
                     correo: '',
-                    contra: ''
+                    contra: '',
+                    rol: ''
                 },
                 editar: false,
                 alcaldias: [
@@ -204,6 +219,12 @@
                     { value: 'Tlalpan', text: 'Tlalpan'},
                     { value: 'Venustiano Carranza', text: 'Venustiano Carranza'},
                     { value: 'Xochimilco', text: 'Xochimilco'}
+                ],
+                roles: [
+                    { value: null, text: 'Selecciona el rol', disabled: true },
+                    { value: 'Usuario', text: 'Usuario' },
+                    { value: 'Administrador', text: 'Administrador' },
+                    { value: 'SuperUsuario', text: 'SuperUsuario' }
                 ],
                 usuario_e: {}
             }

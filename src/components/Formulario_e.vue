@@ -118,6 +118,7 @@
                     nom: '',
                     a_pat: '',
                     a_mat: '',
+                    f_nac: '',
                     alca: '',
                     tel: '',
                     correo: '',
