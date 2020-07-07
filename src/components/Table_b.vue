@@ -18,7 +18,7 @@
             </b-col>
         </b-row>
         <b-row class="mb-5">
-            <b-col cols="12">
+            <b-col cols="12" v-if="!editar">
                 <table class="table">
                     <thead>
                         <tr>
