@@ -10,11 +10,11 @@
                             <p>Seleccioné la colección perteneciente a la base de datos que desea modificar:</p>
                             <nav class="mb-5">
                                 <b-nav vertical class="mt-5">
-                                    <b-nav-item @click="hide">Usuarios</b-nav-item>
-                                    <b-nav-item @click="hide">Exponentes</b-nav-item>
-                                    <b-nav-item @click="hide">Cursos</b-nav-item>
-                                    <b-nav-item @click="hide">Blogs</b-nav-item>
-                                    <b-nav-item @click="hide">Noticias</b-nav-item>
+                                    <b-nav-item @click="mostrar_u()">Usuarios</b-nav-item>
+                                    <b-nav-item @click="mostrar_e()">Exponentes</b-nav-item>
+                                    <b-nav-item>Cursos</b-nav-item>
+                                    <b-nav-item @click="mostrar_b()">Blogs</b-nav-item>
+                                    <b-nav-item @click="mostrar_n()">Noticias</b-nav-item>
                                 </b-nav>
                             </nav>
                             <b-button pill variant="warning" block @click="hide">Cerrar Menú</b-button>
@@ -23,19 +23,55 @@
                 </b-sidebar>
             </b-col>
         </b-row>
-        <Table_u></Table_u>
+        <div v-if="type === 'u'">
+            <Table_u></Table_u>
+        </div>
+        <div v-if="type === 'e'">
+            <Table_e></Table_e>
+        </div>
+        <div v-if="type === 'b'">
+            <Table_b></Table_b>
+        </div>
+        <div v-if="type === 'n'">
+            <Table_n></Table_n>
+        </div>
     </div>
 </template>
 
 <script>
     import Title from '@/components/Title.vue'
     import Table_u from '@/components/Table_u.vue'
+    import Table_e from '@/components/Table_e.vue'
+    import Table_b from '@/components/Table_b.vue'
+    import Table_n from '@/components/Table_n.vue'
 
     export default {
         name: 'Admin',
+        data() {
+            return {
+                type: ''
+            }
+        },
         components: {
             Title,
-            Table_u
+            Table_u,
+            Table_e,
+            Table_b,
+            Table_n
+        },
+        methods: {
+            mostrar_u(){
+                this.type = 'u'
+            },
+            mostrar_e(){
+                this.type = 'e'
+            },
+            mostrar_b(){
+                this.type = 'b'
+            },
+            mostrar_n(){
+                this.type = 'n'
+            }
         }
     }
 </script>

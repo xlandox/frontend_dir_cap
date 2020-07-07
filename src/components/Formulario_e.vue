@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-form @submit="agregarUsuario()">
+        <b-form @submit="agregarExponente()">
             <b-form-group
                 id="Nombre"
                 label="Nombre"
@@ -8,7 +8,7 @@
             >
                 <b-form-input
                     id="nom"
-                    v-model="usuario.nom"
+                    v-model="exponente.nom"
                     type="text"
                     required
                     placeholder="Escribe tu nombre"
@@ -21,7 +21,7 @@
             >
                 <b-form-input
                     id="a_pat"
-                    v-model="usuario.a_pat"
+                    v-model="exponente.a_pat"
                     type="text"
                     required
                     placeholder="Escribe tu apellido paterno"
@@ -34,7 +34,7 @@
             >
                 <b-form-input
                     id="a_mat"
-                    v-model="usuario.a_mat"
+                    v-model="exponente.a_mat"
                     type="text"
                     required
                     placeholder="Escribe tu apellido materno"
@@ -47,7 +47,7 @@
             >
                 <b-form-datepicker 
                     id="f_nac" 
-                    v-model="usuario.f_nac" 
+                    v-model="exponente.f_nac" 
                     required
                     placeholder="Selecciona tu fecha de nacimiento" 
                     local="es"
@@ -60,7 +60,7 @@
             >
                 <b-form-select 
                     id="alca"
-                    v-model="usuario.alca" 
+                    v-model="exponente.alca" 
                     :options="alcaldias"
                     required
                 ></b-form-select> 
@@ -72,7 +72,7 @@
             >
                 <b-form-input
                     id="tel"
-                    v-model="usuario.tel"
+                    v-model="exponente.tel"
                     type="number"
                     required
                     placeholder="Ingrese su número"
@@ -85,7 +85,7 @@
             >
                 <b-form-input
                     id="correo"
-                    v-model="usuario.correo"
+                    v-model="exponente.correo"
                     type="email"
                     required
                     placeholder="Eje. correo@dominio.com"
@@ -98,7 +98,7 @@
             >
                 <b-form-input
                     id="contra"
-                    v-model="usuario.contra"
+                    v-model="exponente.contra"
                     type="password"
                     required
                     placeholder="Escribe tu contraseña"
@@ -111,14 +111,13 @@
 
 <script>
     export default {
-        name: 'Formulario',
+        name: 'Formulario_e',
         data() {
             return {
-                usuario: {
+                exponente: {
                     nom: '',
                     a_pat: '',
                     a_mat: '',
-                    f_nac: '',
                     alca: '',
                     tel: '',
                     correo: '',
@@ -146,9 +145,9 @@
             }
         },
         methods: {
-            agregarUsuario(){
-                this.axios.post('/nuevo_usuario', this.usuario).then(res => {
-                    this.usuario.push(res.data);
+            agregarExponente(){
+                this.axios.post('/nuevo_exponente', this.exponente).then(res => {
+                    this.exponente.push(res.data);
                 }).catch(e => {
                     console.log(e.response);
                 })
