@@ -239,7 +239,7 @@
             },
             editarExponente(item){
                 this.axios.put(`/exponente/${item._id}`, item).then(res => {
-                    const index = this.exponentes.findIndex(u => u._id === res.data._id);
+                    const index = this.exponentes.findIndex(e => e._id === res.data._id);
                     this.exponentes[index].nom = res.data.nom;
                     this.exponentes[index].a_pat = res.data.a_pat;
                     this.exponentes[index].a_mat = res.data.a_mat;
