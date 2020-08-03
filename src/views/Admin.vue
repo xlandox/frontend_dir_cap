@@ -11,8 +11,6 @@
                             <nav class="mb-5">
                                 <b-nav vertical class="mt-5">
                                     <b-nav-item @click="mostrar_u()">Usuarios</b-nav-item>
-                                    <b-nav-item @click="mostrar_e()">Exponentes</b-nav-item>
-                                    <b-nav-item>Cursos</b-nav-item>
                                     <b-nav-item @click="mostrar_b()">Blogs</b-nav-item>
                                     <b-nav-item @click="mostrar_n()">Noticias</b-nav-item>
                                 </b-nav>
@@ -26,9 +24,6 @@
         <div v-if="type === 'u'">
             <Table_u></Table_u>
         </div>
-        <div v-if="type === 'e'">
-            <Table_e></Table_e>
-        </div>
         <div v-if="type === 'b'">
             <Table_b></Table_b>
         </div>
@@ -41,7 +36,6 @@
 <script>
     import Title from '@/components/Title.vue'
     import Table_u from '@/components/Table_u.vue'
-    import Table_e from '@/components/Table_e.vue'
     import Table_b from '@/components/Table_b.vue'
     import Table_n from '@/components/Table_n.vue'
 
@@ -49,22 +43,18 @@
         name: 'Admin',
         data() {
             return {
-                type: ''
+                type: 'u'
             }
         },
         components: {
             Title,
             Table_u,
-            Table_e,
             Table_b,
             Table_n
         },
         methods: {
             mostrar_u(){
                 this.type = 'u'
-            },
-            mostrar_e(){
-                this.type = 'e'
             },
             mostrar_b(){
                 this.type = 'b'

@@ -207,24 +207,24 @@
                     { value: 'Azcapotzalco', text: 'Azcapotzalco' },
                     { value: 'Benito Juárez', text: 'Benito Juárez' },
                     { value: 'Coyoacán', text: 'Coyoacán' },
-                    { value: 'Cuajimalpa de Morelos', text: 'Cuajimalpa de Morelos'},
-                    { value: 'Cuauhtémoc', text: 'Cuauhtémoc'},
-                    { value: 'Gustavo A. Madero', text: 'Gustavo A. Madero'},
-                    { value: 'Iztacalco', text: 'Iztacalco'},
-                    { value: 'Iztapalapa', text: 'Iztapalapa'},
-                    { value: 'Magdalena Contreras', text: 'Magdalena Contreras'},
-                    { value: 'Miguel Hidalgo', text: 'Miguel Hidalgo'},
-                    { value: 'Milpa Alta', text: 'Milpa Alta'},
-                    { value: 'Tláhuac	', text: 'Tláhuac	'},
-                    { value: 'Tlalpan', text: 'Tlalpan'},
-                    { value: 'Venustiano Carranza', text: 'Venustiano Carranza'},
-                    { value: 'Xochimilco', text: 'Xochimilco'}
+                    { value: 'Cuajimalpa de Morelos', text: 'Cuajimalpa de Morelos' },
+                    { value: 'Cuauhtémoc', text: 'Cuauhtémoc' },
+                    { value: 'Gustavo A. Madero', text: 'Gustavo A. Madero' },
+                    { value: 'Iztacalco', text: 'Iztacalco' },
+                    { value: 'Iztapalapa', text: 'Iztapalapa' },
+                    { value: 'Magdalena Contreras', text: 'Magdalena Contreras' },
+                    { value: 'Miguel Hidalgo', text: 'Miguel Hidalgo' },
+                    { value: 'Milpa Alta', text: 'Milpa Alta' },
+                    { value: 'Tláhuac	', text: 'Tláhuac	' },
+                    { value: 'Tlalpan', text: 'Tlalpan' },
+                    { value: 'Venustiano Carranza', text: 'Venustiano Carranza' },
+                    { value: 'Xochimilco', text: 'Xochimilco' }
                 ],
                 roles: [
                     { value: null, text: 'Selecciona el rol', disabled: true },
                     { value: 'Usuario', text: 'Usuario' },
-                    { value: 'Administrador', text: 'Administrador' },
-                    { value: 'SuperUsuario', text: 'SuperUsuario' }
+                    { value: 'Exponente', text: 'Exponente' },
+                    { value: 'Administrador', text: 'Administrador' }
                 ],
                 usuario_e: {}
             }
