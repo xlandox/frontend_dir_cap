@@ -4,21 +4,9 @@
             <b-col>
                 <h3>Colección de usuarios:</h3>
             </b-col>
-            <b-col class="d-flex justify-content-end">
-                <b-button id="show-btn" variant="primary" @click="$bvModal.show('modal')">Nuevo usuario</b-button>
-                <b-modal id="modal" hide-footer>
-                    <template v-slot:modal-title>
-                        Inserte los datos:
-                    </template>
-                    <div>
-                    <Formulario_u></Formulario_u>
-                    </div>
-                    <b-button class="mt-3" block @click="$bvModal.hide('modal')">Cerrar</b-button>
-                </b-modal>
-            </b-col>
         </b-row>
         <b-row class="mb-5 d-flex justify-content-center">
-            <b-col cols="12" v-if="!editar">
+            <b-col cols="12" v-if="!editar && !crear">
                 <table class="table">
                     <thead>
                         <tr>
@@ -29,8 +17,8 @@
                             <th scope="col">Alcaldía</th>
                             <th scope="col">Teléfono</th>
                             <th scope="col">Correo</th>
-                            <th scope="col">Contraseña</th>
                             <th scope="col">Rol</th>
+                            <th scope="col"><b-button variant="primary" @click="cambiarCrear()">Nuevo Usuario</b-button></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,7 +30,6 @@
                             <td>{{item.alca}}</td>
                             <td>{{item.tel}}</td>
                             <td>{{item.correo}}</td>
-                            <td>{{item.contra}}</td>
                             <td>{{item.rol}}</td>
                             <td class="d-flex justify-content-center">
                                 <b-button variant="danger" @click="cambiarEditar(item._id)" class="mr-1">Editar</b-button>
@@ -52,9 +39,14 @@
                     </tbody>
                 </table>
             </b-col>
+            <b-col sm="8" v-if="crear">
+                <h4>Crear Usuario</h4>
+                <Formulario_u></Formulario_u>
+                <b-button block variant="warning" @click="crear = false">Cancelar</b-button>
+            </b-col>
             <b-col sm="8" v-if="editar">
                 <h4>Editar Usuario</h4>
-                <b-form @submit="editarUsuario(usuario_e)">
+                <b-form @submit.prevent="editarUsuario(usuario_e)">
                     <b-form-group
                         id="Nombre"
                         label="Nombre"
@@ -179,6 +171,7 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex'
     import Formulario_u from '@/components/Formulario_u.vue'
 
     export default {
@@ -189,6 +182,8 @@
         data() {
             return {
                 usuarios: [],
+                crear: false,
+                editar: false,
                 usuario: {
                     nom: '',
                     a_pat: '',
@@ -200,7 +195,6 @@
                     contra: '',
                     rol: ''
                 },
-                editar: false,
                 alcaldias: [
                     { value: null, text: 'Selecciona una alcaldía', disabled: true },
                     { value: 'Álvaro Obregón', text: 'Álvaro Obregón' },
@@ -229,38 +223,48 @@
                 usuario_e: {}
             }
         },
+        computed: {
+            ...mapState(['token'])
+        },
         created(){
             this.listarUsuarios();
         },
         methods: {
             listarUsuarios(){
-                this.axios.get('/usuarios').then(res => {
-                    console.log(res.data);
+                let config = {
+                    headers: {
+                        token: this.token
+                    }
+                }
+                this.axios.get('/usuarios', config).then(res => {
                     this.usuarios = res.data;
                 }).catch(e => {
                     console.log(e.response);
                 })
             },
-            eliminarUsuario(id){
-                console.log(id);
-                this.axios.delete(`/usuario/${id}`).then(res => {
-                    const index = this.usuarios.findIndex(item => item._id === res.data._id);
-                    this.usuarios.splice(index, 1);
-                }).catch(e => {
-                    console.log(e.response);
-                })
+            cambiarCrear(){
+                this.crear = true;
             },
             cambiarEditar(id){
                 this.editar = true;
-                console.log(id);
-                this.axios.get(`/usuario/${id}`).then(res => {
+                let config = {
+                    headers: {
+                        token: this.token
+                    }
+                }
+                this.axios.get(`/usuario/${id}`, config).then(res => {
                     this.usuario_e = res.data;
                 }).catch(e => {
                     console.log(e.response);
                 })
             },
             editarUsuario(item){
-                this.axios.put(`/usuario/${item._id}`, item).then(res => {
+                let config = {
+                    headers: {
+                        token: this.token
+                    }
+                }
+                this.axios.put(`/usuario/${item._id}`, config, item).then(res => {
                     const index = this.usuarios.findIndex(u => u._id === res.data._id);
                     this.usuarios[index].nom = res.data.nom;
                     this.usuarios[index].a_pat = res.data.a_pat;
@@ -270,6 +274,21 @@
                     this.usuarios[index].tel = res.data.tel;
                     this.usuarios[index].correo = res.data.correo;
                     this.usuarios[index].contra = res.data.contra;
+                    this.usuarios[index].rol = res.data.rol;
+                }).catch(e => {
+                    console.log(e.response);
+                })
+            },
+            eliminarUsuario(id){
+                let config = {
+                    headers: {
+                        token: this.token
+                    }
+                }
+                console.log(id);
+                this.axios.delete(`/usuario/${id}`, config).then(res => {
+                    const index = this.usuarios.findIndex(item => item._id === res.data._id);
+                    this.usuarios.splice(index, 1);
                 }).catch(e => {
                     console.log(e.response);
                 })

@@ -17,10 +17,15 @@
                         </b-navbar-nav>
                         <!-- Items alineados a la derecha en la Navbar -->
                         <b-navbar-nav class="ml-auto">
-                            <b-nav-item :to="{name: 'Login'}">
+                            <b-nav-item :to="{name: 'Login'}" v-if="!sesionIniciada">
                                 <b-icon icon="person-fill"></b-icon>
-                                Iniciar Sesión
+                                    Iniciar sesión
                             </b-nav-item>
+                            <b-nav-item @click="cerrarSesion()" v-if="sesionIniciada">
+                                <b-icon icon="person-fill"></b-icon>
+                                    Cerrar sesión
+                            </b-nav-item>
+                            
                         </b-navbar-nav>
                     </b-collapse>
                 </b-navbar>
@@ -68,6 +73,19 @@
         </footer>
     </div>
 </template>
+
+<script>
+import { mapActions, mapGetters } from "vuex";
+
+export default {
+    methods:{
+        ...mapActions(['cerrarSesion'])
+    },
+    computed:{
+        ...mapGetters(['sesionIniciada'])
+    }
+}
+</script>
 
 <style lang="scss">
     @import "assets/estilos.scss";

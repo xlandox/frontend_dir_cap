@@ -191,7 +191,6 @@
                     this.mensaje.color = 'info'; 
                     this.mensaje.texto = e.response.data.error.errors.correo.properties.message;
                     this.showAlert();
-                    console.log(e.response);
                 })
             }
         }

@@ -48,6 +48,7 @@
 </template>
 
 <script>
+    import { mapActions } from 'vuex'
     import Title from '@/components/Title.vue'
 
     export default {
@@ -73,12 +74,14 @@
             showAlert() {
                 this.dismissCountDown = this.dismissSecs
             },
+            ...mapActions(['guardarUsuario']),
             login() {
                 this.axios.post('/login', this.usuario).then(res => {
                     this.mensaje.color = 'primary'; 
                     this.mensaje.texto = 'El inicio de sesion fue exitoso'
                     this.showAlert();
-                    console.log(res.data);
+                    const token = res.data.token;
+                    this.guardarUsuario(token);
                 }).catch(e => {
                     this.mensaje.color = 'info'; 
                     this.mensaje.texto = e.response.data.mensaje;

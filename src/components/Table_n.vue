@@ -131,7 +131,6 @@
         methods: {
             listarNoticias(){
                 this.axios.get('/noticias').then(res => {
-                    console.log(res.data);
                     this.noticias = res.data;
                 }).catch(e => {
                     console.log(e.response);
@@ -147,7 +146,6 @@
             },
             cambiarEditar(id){
                 this.editar = true;
-                console.log(id);
                 this.axios.get(`/noticia/${id}`).then(res => {
                     this.noticia_e = res.data;
                 }).catch(e => {

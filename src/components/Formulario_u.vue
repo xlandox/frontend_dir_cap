@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-form @submit="agregarUsuario()">
+        <b-form @submit.prevent="agregarUsuario()">
             <b-form-group
                 id="Nombre"
                 label="Nombre"
@@ -116,6 +116,15 @@
                     required
                 ></b-form-select> 
             </b-form-group> 
+            <b-alert
+                :show="dismissCountDown"
+                dismissible
+                :variant="mensaje.color"
+                @dismissed="dismissCountDown=0"
+                @dismiss-count-down="countDownChanged"
+            >
+                {{mensaje.texto}}
+            </b-alert>
             <b-button type="submit" block variant="primary">Agregar</b-button>
         </b-form>
     </div>
@@ -126,6 +135,9 @@
         name: 'Formulario_u',
         data() {
             return {
+                mensaje: {color: '', texto: ''},
+                dismissSecs: 5,
+                dismissCountDown: 0,
                 usuario: {
                     nom: '',
                     a_pat: '',
@@ -159,16 +171,27 @@
                 roles: [
                     { value: null, text: 'Selecciona el rol', disabled: true },
                     { value: 'Usuario', text: 'Usuario' },
-                    { value: 'Administrador', text: 'Administrador' },
-                    { value: 'SuperUsuario', text: 'SuperUsuario' }
+                    { value: 'Exponente', text: 'Exponente' },
+                    { value: 'Administrador', text: 'Administrador' }
                 ]
             }
         },
         methods: {
+            countDownChanged(dismissCountDown) {
+                this.dismissCountDown = dismissCountDown
+            },
+            showAlert() {
+                this.dismissCountDown = this.dismissSecs
+            },
             agregarUsuario(){
                 this.axios.post('/nuevo_usuario', this.usuario).then(res => {
+                    this.mensaje.color = 'primary'; 
+                    this.mensaje.texto = 'El registro fue exitoso'
+                    this.showAlert();
                     this.usuario.push(res.data);
                 }).catch(e => {
+                    this.mensaje.color = 'info'; 
+                    this.mensaje.texto = e.response;
                     console.log(e.response);
                 })
             }

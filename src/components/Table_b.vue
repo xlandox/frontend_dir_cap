@@ -31,7 +31,7 @@
                     <tbody>
                         <tr v-for="(item, index) in blogs" :key="index">
                             <td>{{item.titulo}}</td>
-                            <td>{{item.autor}}</td>
+                            <td>{{item.autor_id}}</td>
                             <td>{{item.foto}}</td>
                             <td>{{item.f_crea}}</td>
                             <td class="d-flex justify-content-center">
@@ -131,7 +131,6 @@
         methods: {
             listarBlogs(){
                 this.axios.get('/blogs').then(res => {
-                    console.log(res.data);
                     this.blogs = res.data;
                 }).catch(e => {
                     console.log(e.response);
@@ -147,7 +146,6 @@
             },
             cambiarEditar(id){
                 this.editar = true;
-                console.log(id);
                 this.axios.get(`/blog/${id}`).then(res => {
                     this.blog_e = res.data;
                 }).catch(e => {

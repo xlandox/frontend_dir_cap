@@ -32,6 +32,7 @@
     import CardImage from '@/components/CardImage.vue'
     import CardRight from '@/components/CardRight.vue'
     
+    
     export default {
         name: 'Home',
         components: {
