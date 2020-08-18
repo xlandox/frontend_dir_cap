@@ -42,7 +42,7 @@
             <b-col sm="8" v-if="crear">
                 <h4>Crear Usuario</h4>
                 <Formulario_u></Formulario_u>
-                <b-button block variant="warning" @click="crear = false">Cancelar</b-button>
+                <b-button block variant="warning" @click="crear = false" class="mt-1">Cancelar</b-button>
             </b-col>
             <b-col sm="8" v-if="editar">
                 <h4>Editar Usuario</h4>
