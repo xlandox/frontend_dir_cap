@@ -2,7 +2,7 @@
     <div>
         <b-row class="mb-3">
             <b-col>
-                <h3>Colección de blogs:</h3>
+                <h3>Colección de Carrusel:</h3>
             </b-col>
         </b-row>
         <b-row class="mb-5 d-flex justify-content-center">
@@ -14,26 +14,26 @@
                             <th scope="col">Autor</th>
                             <th scope="col">Foto</th>
                             <th scope="col">Fecha de Creación</th>
-                            <th scope="col"><b-button variant="primary" @click="cambiarCrear()">Nuevo Blog</b-button></th>
+                            <th scope="col"><b-button variant="primary" @click="cambiarCrear()">Nueva Imagen</b-button></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(item, index) in blogs" :key="index">
+                        <tr v-for="(item, index) in imagenes" :key="index">
                             <td>{{item.titulo}}</td>
                             <td>{{item.autor_id}}</td>
                             <td>{{item.foto}}</td>
                             <td>{{item.f_crea}}</td>
                             <td class="d-flex justify-content-center">
                                 <b-button class="mr-1" variant="danger" @click="cambiarEditar(item._id)">Editar</b-button>
-                                <b-button variant="warning" @click="eliminarBlog(item._id)">Eliminar</b-button>
+                                <b-button variant="warning" @click="eliminarImagen(item._id)">Eliminar</b-button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </b-col>
             <b-col sm="8" v-if="crear">
-                <h4>Crear Blog</h4>
-                <b-form @submit.prevent="agregarBlog()">
+                <h4>Insertar Imagen</h4>
+                <b-form @submit.prevent="agregarImagen()">
                     <b-form-group
                         id="Titulo"
                         label="Titulo"
@@ -41,24 +41,12 @@
                     >
                         <b-form-input
                             id="titulo"
-                            v-model="blog.titulo"
+                            v-model="imagen.titulo"
                             type="text"
                             required
-                            placeholder="Escribe el titulo del blog"
+                            placeholder="Escribe el titulo de la imagen"
                         ></b-form-input> 
                     </b-form-group>
-                    <b-form-group
-                        id="Artículo"
-                        label="Artículo"
-                        label-for="articulo"
-                    >
-                        <b-form-textarea
-                            id="articulo"
-                            v-model="blog.articulo"
-                            placeholder="Redacta el artículo ..."
-                            rows="6"
-                        ></b-form-textarea>
-                    </b-form-group>   
                     <b-form-group
                         id="Foto"
                         label="Foto"
@@ -66,7 +54,7 @@
                     >
                         <b-form-input
                             id="foto"
-                            v-model="blog.foto"
+                            v-model="imagen.foto"
                             type="text"
                             required
                             placeholder="Introduce la URL"
@@ -77,8 +65,8 @@
                 </b-form>
             </b-col>
             <b-col sm="8" v-if="editar">
-                <h4>Editar Blog</h4>
-                <b-form @submit.prevent="editarBlog(blog_e)">
+                <h4>Editar Imagen</h4>
+                <b-form @submit.prevent="editarImagen(imagen_e)">
                     <b-form-group
                         id="Titulo"
                         label="Titulo"
@@ -86,24 +74,12 @@
                     >
                         <b-form-input
                             id="titulo"
-                            v-model="blog_e.titulo"
+                            v-model="imagen_e.titulo"
                             type="text"
                             required
-                            placeholder="Escribe el titulo del blog"
+                            placeholder="Escribe el titulo de la imagen"
                         ></b-form-input> 
-                    </b-form-group>  
-                    <b-form-group
-                        id="Artículo"
-                        label="Artículo"
-                        label-for="articulo"
-                    >
-                        <b-form-textarea
-                            id="articulo"
-                            v-model="blog_e.articulo"
-                            placeholder="Redacta el artículo ..."
-                            rows="6"
-                        ></b-form-textarea>
-                    </b-form-group>   
+                    </b-form-group>
                     <b-form-group
                         id="Foto"
                         label="Foto"
@@ -111,7 +87,7 @@
                     >
                         <b-form-input
                             id="foto"
-                            v-model="blog_e.foto"
+                            v-model="imagen_e.foto"
                             type="text"
                             required
                             placeholder="Introduce la URL"
@@ -142,28 +118,28 @@
     import { mapState } from 'vuex'
 
     export default {
-        name: 'Table_b',
+        name: 'Table_c',
         data() {
             return {
                 mensaje: {color: '', texto: ''},
                 dismissSecs: 5,
                 dismissCountDown: 0,
-                blogs: [],
+                imagenes: [],
                 crear: false,
                 editar: false,
-                blog: {
+                imagen: {
                     titulo: '',
                     articulo: '',
                     foto: ''
                 },
-                blog_e: {}
+                imagen_e: {}
             }
         },
         computed: {
             ...mapState(['token'])
         },
         created(){
-            this.listarBlogs();
+            this.listarImagenes();
         },
         methods: {
             countDownChanged(dismissCountDown) {
@@ -172,9 +148,9 @@
             showAlert() {
                 this.dismissCountDown = this.dismissSecs
             },
-            listarBlogs(){
-                this.axios.get('/blogs').then(res => {
-                    this.blogs = res.data;
+            listarImagenes(){
+                this.axios.get('/Imagenes').then(res => {
+                    this.imagenes = res.data;
                 }).catch(e => {
                     console.log(e.response);
                 })
@@ -182,14 +158,14 @@
             cambiarCrear(){
                 this.crear = true;
             },
-            agregarBlog(){
+            agregarImagen(){
                 let config = {
                     headers: {
                         token: this.token
                     }
                 }
-                this.axios.post('/nuevo_blog', this.blog, config).then(res => {
-                    this.blog.push(res.data);
+                this.axios.post('/nueva_imagen', this.imagen, config).then(res => {
+                    this.imagen.push(res.data);
                     this.mensaje.color = 'primary'; 
                     this.mensaje.texto = 'El registro fue exitoso';
                     this.showAlert();
@@ -201,23 +177,22 @@
             },
             cambiarEditar(id){
                 this.editar = true;
-                this.axios.get(`/blog/${id}`).then(res => {
-                    this.blog_e = res.data;
+                this.axios.get(`/imagen/${id}`).then(res => {
+                    this.imagen_e = res.data;
                 }).catch(e => {
                     console.log(e.response);
                 })
             },
-            editarBlog(item){
+            editarImagen(item){
                 let config = {
                     headers: {
                         token: this.token
                     }
                 }
-                this.axios.put(`/blog/${item._id}`, item, config).then(res => {
-                    const index = this.blogs.findIndex(b => b._id === res.data._id);
-                    this.blogs[index].titulo = res.data.titulo;
-                    this.blogs[index].articulo = res.data.articulo;
-                    this.blogs[index].foto = res.data.foto;
+                this.axios.put(`/imagen/${item._id}`, item, config).then(res => {
+                    const index = this.imagenes.findIndex(n => n._id === res.data._id);
+                    this.imagenes[index].titulo = res.data.titulo;
+                    this.imagenes[index].foto = res.data.foto;
                     this.mensaje.color = 'primary'; 
                     this.mensaje.texto = 'Se actualizo con exito';
                     this.showAlert();
@@ -227,15 +202,15 @@
                     this.showAlert();
                 })
             },
-            eliminarBlog(id){
+            eliminarImagen(id){
                 let config = {
                     headers: {
                         token: this.token
                     }
                 }
-                this.axios.delete(`/blog/${id}`, config).then(res => {
-                    const index = this.blogs.findIndex(item => item._id === res.data._id);
-                    this.blogs.splice(index, 1);
+                this.axios.delete(`/imagen/${id}`, config).then(res => {
+                    const index = this.imagenes.findIndex(item => item._id === res.data._id);
+                    this.imagenes.splice(index, 1);
                     this.mensaje.color = 'primary'; 
                     this.mensaje.texto = 'El registro fue eliminado con exito';
                     this.showAlert();
@@ -244,7 +219,7 @@
                     this.mensaje.texto = e.response;
                     this.showAlert();
                 })
-            }
+            },
         }
     }
 </script>
