@@ -375,7 +375,7 @@
                     }
                 }
                 this.axios.get('/usuarios', config).then(res => {
-                    this.usuarios = res.data;
+                    this.usuarios = res.data.usuarioDB;
                 }).catch(e => {
                     console.log(e.response);
                 })
