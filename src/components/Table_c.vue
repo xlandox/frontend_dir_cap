@@ -14,7 +14,9 @@
                             <th scope="col">Autor</th>
                             <th scope="col">Foto</th>
                             <th scope="col">Fecha de Creación</th>
-                            <th scope="col"><b-button variant="primary" @click="cambiarCrear()">Nueva Imagen</b-button></th>
+                            <th scope="col" class="d-flex justify-content-center">
+                                <b-button variant="primary" @click="cambiarCrear()">Nueva Imagen</b-button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,8 +62,10 @@
                             placeholder="Introduce la URL"
                         ></b-form-input> 
                     </b-form-group>  
-                    <b-button type="submit" block variant="primary">Agregar</b-button>
-                    <b-button type="submit" block variant="warning" @click="crear = false" class="mt-2">Regresar</b-button>
+                    <div class="d-flex justify-content-center">
+                        <b-button type="submit" variant="primary" class="my-5 mx-2">Agregar</b-button>
+                        <b-button variant="warning" class="my-5 mx-2" @click="crear = false">Regresar</b-button>
+                    </div>
                 </b-form>
             </b-col>
             <b-col sm="8" v-if="editar">
@@ -93,7 +97,7 @@
                             placeholder="Introduce la URL"
                         ></b-form-input> 
                     </b-form-group>  
-                    <b-button type="submit" variant="primary" class="mr-1">Editar</b-button>
+                    <b-button type="submit" variant="primary" class="mr-2">Editar</b-button>
                     <b-button type="submit" variant="warning" @click="editar = false">Regresar</b-button>
                 </b-form>
             </b-col>
@@ -165,10 +169,10 @@
                     }
                 }
                 this.axios.post('/nueva_imagen', this.imagen, config).then(res => {
-                    this.imagen.push(res.data);
                     this.mensaje.color = 'primary'; 
-                    this.mensaje.texto = 'El registro fue exitoso';
+                    this.mensaje.texto = 'El registro fue exitoso'
                     this.showAlert();
+                    this.imagen.push(res.data);
                 }).catch(e => {
                     this.mensaje.color = 'info'; 
                     this.mensaje.texto = e.response;
@@ -219,7 +223,7 @@
                     this.mensaje.texto = e.response;
                     this.showAlert();
                 })
-            },
+            }
         }
     }
 </script>

@@ -18,7 +18,9 @@
                             <th scope="col">Teléfono</th>
                             <th scope="col">Correo</th>
                             <th scope="col">Rol</th>
-                            <th scope="col"><b-button variant="primary" @click="cambiarCrear()">Nuevo Usuario</b-button></th>
+                            <th scope="col" class="d-flex justify-content-center">
+                                <b-button variant="primary" @click="cambiarCrear()">Nuevo Usuario</b-button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -157,8 +159,10 @@
                             required
                         ></b-form-select> 
                     </b-form-group> 
-                    <b-button type="submit" block variant="primary">Agregar</b-button>
-                    <b-button type="submit" block variant="warning" @click="crear = false" class="mt-2">Regresar</b-button>
+                    <div class="d-flex justify-content-center">
+                        <b-button type="submit" variant="primary" class="my-5 mx-2">Agregar</b-button>
+                        <b-button variant="warning" class="my-5 mx-2" @click="crear = false">Regresar</b-button>
+                    </div>
                 </b-form>
             </b-col>
             <b-col sm="8" v-if="editar">
@@ -381,10 +385,10 @@
             },
             agregarUsuario(){
                 this.axios.post('/nuevo_usuario', this.usuario).then(res => {
-                    this.usuario.push(res.data);
                     this.mensaje.color = 'primary'; 
-                    this.mensaje.texto = 'El registro fue exitoso';
+                    this.mensaje.texto = 'El registro fue exitoso'
                     this.showAlert();
+                    this.usuario.push(res.data);
                 }).catch(e => {
                     this.mensaje.color = 'info'; 
                     this.mensaje.texto = e.response.data.error.errors.correo.properties.message;
