@@ -6,7 +6,7 @@
                 <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-header shadow>
                     <template v-slot:default="{ hide }">
                         <div class="p-3">
-                            <h3 id="sidebar-no-header-title" class="my-5">Hola administrador</h3>
+                            <h3 id="sidebar-no-header-title" class="my-5">Hola Administrador</h3>
                             <p>Seleccioné la colección perteneciente a la base de datos que desea modificar:</p>
                             <nav class="mb-5">
                                 <b-nav vertical class="mt-5">
