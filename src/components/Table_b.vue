@@ -32,6 +32,20 @@
                         </tr>
                     </tbody>
                 </table>
+                <nav aria-label="Paginacion">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item" :class="{'disabled': paginaActual === 1}">
+                                <router-link :to="{query: {pagina: paginaActual - 1}}" class="page-link" href="#">Anterior</router-link>
+                            </li>
+                            <li class="page-item" :class="{'active': paginaActual === index + 1}"
+                            v-for="(item, index) in cantidadPaginas" :key="index">
+                                <router-link :to="{query: {pagina: index + 1}}" class="page-link" href="#">{{index + 1}}</router-link>
+                                </li>
+                            <li class="page-item" :class="{'disabled': paginaActual === cantidadPaginas}">
+                                <router-link :to="{query: {pagina: paginaActual + 1}}" class="page-link" href="#">Siguiente</router-link>
+                            </li>
+                        </ul>
+                    </nav>
             </b-col>
             <b-col sm="8" v-if="crear">
                 <h4>Crear Blog</h4>
@@ -139,26 +153,6 @@
                 </b-alert>
             </b-col>
         </b-row>
-        <b-row>
-            <b-col>
-                <template>
-                    <nav aria-label="Paginacion">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item" :class="{'disabled': paginaActual === 1}">
-                                <router-link :to="{query: {pagina: paginaActual - 1}}" class="page-link" href="#">Anterior</router-link>
-                            </li>
-                            <li class="page-item" :class="{'active': paginaActual === index + 1}"
-                            v-for="(item, index) in cantidadPaginas" :key="index">
-                                <router-link :to="{query: {pagina: index + 1}}" class="page-link" href="#">{{index + 1}}</router-link>
-                                </li>
-                            <li class="page-item" :class="{'disabled': paginaActual === cantidadPaginas}">
-                                <router-link :to="{query: {pagina: paginaActual + 1}}" class="page-link" href="#">Siguiente</router-link>
-                            </li>
-                        </ul>
-                    </nav>
-                </template>
-            </b-col>
-        </b-row>
     </div>
 </template>
 
@@ -172,6 +166,9 @@
                 mensaje: {color: '', texto: ''},
                 dismissSecs: 5,
                 dismissCountDown: 0,
+                totalBlogs: 0,
+                limite: 5,
+                paginaActual: 1,
                 blogs: [],
                 crear: false,
                 editar: false,
@@ -184,10 +181,23 @@
             }
         },
         computed: {
-            ...mapState(['token'])
+            ...mapState(['token']),
+            cantidadPaginas(){
+                return Math.ceil(this.totalBlogs / this.limite);
+            }
         },
-        created(){
+        /*created(){
             this.listarBlogs();
+        },*/
+        watch: {
+            "$route.query.pagina":{
+                immediate: true,
+                handler(pagina){
+                    pagina = parseInt(pagina) || 1;
+                    this.paginacion(pagina);
+                    this.paginaActual = pagina;
+                }
+            }
         },
         methods: {
             countDownChanged(dismissCountDown) {
@@ -196,13 +206,22 @@
             showAlert() {
                 this.dismissCountDown = this.dismissSecs
             },
-            listarBlogs(){
+            paginacion(pagina){
+                let skip = (pagina - 1) * this.limite;
+                this.axios.get(`/blogs?skip=${skip}&limit=${this.limite}`).then(res => {
+                    this.blogs = res.data.blogDB;
+                    this.totalBlogs = res.data.totalBlogs;
+                }).catch(e => {
+                    console.log(e.respone)
+                })
+            },
+            /*listarBlogs(){
                 this.axios.get('/blogs').then(res => {
-                    this.blogs = res.data;
+                    this.blogs = res.data.blogDB;
                 }).catch(e => {
                     console.log(e.response);
                 })
-            },
+            },*/
             cambiarCrear(){
                 this.crear = true;
             },
