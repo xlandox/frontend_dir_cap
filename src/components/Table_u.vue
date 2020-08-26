@@ -300,6 +300,26 @@
                 </b-alert>
             </b-col>
         </b-row>
+        <b-row>
+            <b-col>
+                <template>
+                    <nav aria-label="Paginacion">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item" :class="{'disabled': paginaActual === 1}">
+                                <router-link :to="{query: {pagina: paginaActual - 1}}" class="page-link" href="#">Anterior</router-link>
+                            </li>
+                            <li class="page-item" :class="{'active': paginaActual === index + 1}"
+                            v-for="(item, index) in cantidadPaginas" :key="index">
+                                <router-link :to="{query: {pagina: index + 1}}" class="page-link" href="#">{{index + 1}}</router-link>
+                                </li>
+                            <li class="page-item" :class="{'disabled': paginaActual === cantidadPaginas}">
+                                <router-link :to="{query: {pagina: paginaActual + 1}}" class="page-link" href="#">Siguiente</router-link>
+                            </li>
+                        </ul>
+                    </nav>
+                </template>
+            </b-col>
+        </b-row>
     </div>
 </template>
 
@@ -313,8 +333,8 @@
                 mensaje: {color: '', texto: ''},
                 dismissSecs: 5,
                 dismissCountDown: 0,
-                totalNotas: 0,
-                limite: 6,
+                totalUsuarios: 0,
+                limite: 5,
                 paginaActual: 1,
                 usuarios: [],
                 crear: false,
@@ -359,10 +379,23 @@
             }
         },
         computed: {
-            ...mapState(['token'])
+            ...mapState(['token']),
+            cantidadPaginas(){
+                return Math.ceil(this.totalUsuarios / this.limite);
+            }
         },
-        created(){
+        /*created(){
             this.listarUsuarios();
+        },*/
+        watch: {
+            "$route.query.pagina":{
+                immediate: true,
+                handler(pagina){
+                    pagina = parseInt(pagina) || 1;
+                    this.paginacion(pagina);
+                    this.paginaActual = pagina;
+                }
+            }
         },
         methods: {
             countDownChanged(dismissCountDown) {
@@ -371,7 +404,21 @@
             showAlert() {
                 this.dismissCountDown = this.dismissSecs
             },
-            listarUsuarios(){
+            paginacion(pagina){
+                let config = {
+                    headers: {
+                        token: this.token
+                    }
+                };
+                let skip = (pagina - 1) * this.limite;
+                this.axios.get(`/usuarios?skip=${skip}&limit=${this.limite}`, config).then(res => {
+                    this.usuarios = res.data.usuarioDB;
+                    this.totalUsuarios = res.data.totalUsuarios;
+                }).catch(e => {
+                    console.log(e.respone)
+                })
+            },
+            /*listarUsuarios(){
                 let config = {
                     headers: {
                         token: this.token
@@ -382,7 +429,7 @@
                 }).catch(e => {
                     console.log(e.response);
                 })
-            },
+            },*/
             cambiarCrear(){
                 this.crear = true;
             },
