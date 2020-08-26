@@ -142,6 +142,9 @@
                 mensaje: {color: '', texto: ''},
                 dismissSecs: 5,
                 dismissCountDown: 0,
+                totalImagenes: 0,
+                limite: 5,
+                paginaActual: 1,
                 imagenes: [],
                 crear: false,
                 editar: false,
@@ -154,10 +157,23 @@
             }
         },
         computed: {
-            ...mapState(['token'])
+            ...mapState(['token']),
+            cantidadPaginas(){
+                return Math.ceil(this.totalImagenes / this.limite);
+            }
         },
-        created(){
+        /*created(){
             this.listarImagenes();
+        },*/
+        watch: {
+            "$route.query.pagina":{
+                immediate: true,
+                handler(pagina){
+                    pagina = parseInt(pagina) || 1;
+                    this.paginacion(pagina);
+                    this.paginaActual = pagina;
+                }
+            }
         },
         methods: {
             countDownChanged(dismissCountDown) {
@@ -166,13 +182,22 @@
             showAlert() {
                 this.dismissCountDown = this.dismissSecs
             },
-            listarImagenes(){
+            paginacion(pagina){
+                let skip = (pagina - 1) * this.limite;
+                this.axios.get(`/imagenes?skip=${skip}&limit=${this.limite}`).then(res => {
+                    this.imagenes = res.data.carruselDB;
+                    this.totalImagenes = res.data.totalImagenes;
+                }).catch(e => {
+                    console.log(e.respone)
+                })
+            },
+            /*listarImagenes(){
                 this.axios.get('/Imagenes').then(res => {
                     this.imagenes = res.data;
                 }).catch(e => {
                     console.log(e.response);
                 })
-            },
+            },*/
             cambiarCrear(){
                 this.crear = true;
             },
