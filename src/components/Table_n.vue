@@ -166,6 +166,9 @@
                 mensaje: {color: '', texto: ''},
                 dismissSecs: 5,
                 dismissCountDown: 0,
+                totalNoticias: 0,
+                limite: 5,
+                paginaActual: 1,
                 noticias: [],
                 crear: false,
                 editar: false,
@@ -178,10 +181,23 @@
             }
         },
         computed: {
-            ...mapState(['token'])
+            ...mapState(['token']),
+            cantidadPaginas(){
+                return Math.ceil(this.totalNoticias / this.limite);
+            }
         },
-        created(){
+        /*created(){
             this.listarNoticias();
+        },*/
+        watch: {
+            "$route.query.pagina":{
+                immediate: true,
+                handler(pagina){
+                    pagina = parseInt(pagina) || 1;
+                    this.paginacion(pagina);
+                    this.paginaActual = pagina;
+                }
+            }
         },
         methods: {
             countDownChanged(dismissCountDown) {
@@ -190,13 +206,22 @@
             showAlert() {
                 this.dismissCountDown = this.dismissSecs
             },
-            listarNoticias(){
+            paginacion(pagina){
+                let skip = (pagina - 1) * this.limite;
+                this.axios.get(`/noticias?skip=${skip}&limit=${this.limite}`).then(res => {
+                    this.noticias = res.data.noticiaDB;
+                    this.totalNoticias = res.data.totalNoticias;
+                }).catch(e => {
+                    console.log(e.respone)
+                })
+            },
+            /*listarNoticias(){
                 this.axios.get('/noticias').then(res => {
                     this.noticias = res.data;
                 }).catch(e => {
                     console.log(e.response);
                 })
-            },
+            },*/
             cambiarCrear(){
                 this.crear = true;
             },
