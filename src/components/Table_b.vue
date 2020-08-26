@@ -139,6 +139,26 @@
                 </b-alert>
             </b-col>
         </b-row>
+        <b-row>
+            <b-col>
+                <template>
+                    <nav aria-label="Paginacion">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item" :class="{'disabled': paginaActual === 1}">
+                                <router-link :to="{query: {pagina: paginaActual - 1}}" class="page-link" href="#">Anterior</router-link>
+                            </li>
+                            <li class="page-item" :class="{'active': paginaActual === index + 1}"
+                            v-for="(item, index) in cantidadPaginas" :key="index">
+                                <router-link :to="{query: {pagina: index + 1}}" class="page-link" href="#">{{index + 1}}</router-link>
+                                </li>
+                            <li class="page-item" :class="{'disabled': paginaActual === cantidadPaginas}">
+                                <router-link :to="{query: {pagina: paginaActual + 1}}" class="page-link" href="#">Siguiente</router-link>
+                            </li>
+                        </ul>
+                    </nav>
+                </template>
+            </b-col>
+        </b-row>
     </div>
 </template>
 
