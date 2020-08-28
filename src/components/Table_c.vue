@@ -73,8 +73,9 @@
                             v-model="imagen.foto"
                             type="text"
                             required
-                            placeholder="Introduce la URL"
+                            placeholder="Introduce la URL 'https://dominio.com/nombreimagen.tipodeimagen'"
                         ></b-form-input> 
+                        Las dimensiones de la imagen deben ser 1024x480 pixeles para un mejor funcionamiento.
                     </b-form-group>  
                     <div class="d-flex justify-content-center">
                         <b-button type="submit" variant="primary" class="my-5 mx-2">Agregar</b-button>
