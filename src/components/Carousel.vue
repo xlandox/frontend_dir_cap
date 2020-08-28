@@ -49,12 +49,11 @@ export default {
     created() {
         this.listarImagenes();
     },
-    methods:{
+    methods: {
         listarImagenes(){
             this.axios.get('/imageness').then(res => {
                 this.imagenes = res.data.carruselDB;
                 this.totalImagenes = res.data.totalImagenes;
-                console.log(res.data)
                 this.imagen1.titulo = this.imagenes[this.totalImagenes - 1].titulo;
                 this.imagen1.foto = this.imagenes[this.totalImagenes - 1].foto;
                 this.imagen1.resumen = this.imagenes[this.totalImagenes - 1].resumen;
