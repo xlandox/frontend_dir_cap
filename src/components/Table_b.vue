@@ -64,6 +64,19 @@
                         ></b-form-input> 
                     </b-form-group>
                     <b-form-group
+                        id="Resumen"
+                        label="Resumen"
+                        label-for="resumen"
+                    >
+                        <b-form-input
+                            id="resumen"
+                            v-model="blog.resumen"
+                            type="text"
+                            required
+                            placeholder="Escribe el resumen de la imagen"
+                        ></b-form-input> 
+                    </b-form-group>
+                    <b-form-group
                         id="Artículo"
                         label="Artículo"
                         label-for="articulo"
@@ -85,8 +98,9 @@
                             v-model="blog.foto"
                             type="text"
                             required
-                            placeholder="Introduce la URL"
+                            placeholder="Introduce la URL https://dominio.com/nombreimagen.tipodeimagen"
                         ></b-form-input> 
+                        Las dimensiones de la imagen deben ser 900x250 pixeles para un mejor funcionamiento.
                     </b-form-group>  
                     <div class="d-flex justify-content-center">
                         <b-button type="submit" variant="primary" class="my-5 mx-2">Agregar</b-button>
@@ -109,7 +123,20 @@
                             required
                             placeholder="Escribe el titulo del blog"
                         ></b-form-input> 
-                    </b-form-group>  
+                    </b-form-group> 
+                    <b-form-group
+                        id="Resumen"
+                        label="Resumen"
+                        label-for="resumen"
+                    >
+                        <b-form-input
+                            id="resumen"
+                            v-model="blog_e.resumen"
+                            type="text"
+                            required
+                            placeholder="Escribe el resumen de la imagen"
+                        ></b-form-input> 
+                    </b-form-group> 
                     <b-form-group
                         id="Artículo"
                         label="Artículo"
@@ -132,8 +159,9 @@
                             v-model="blog_e.foto"
                             type="text"
                             required
-                            placeholder="Introduce la URL"
+                            placeholder="Introduce la URL https://dominio.com/nombreimagen.tipodeimagen"
                         ></b-form-input> 
+                        Las dimensiones de la imagen deben ser 900x250 pixeles para un mejor funcionamiento.
                     </b-form-group>  
                     <b-button type="submit" variant="primary" class="mr-2">Editar</b-button>
                     <b-button type="submit" variant="warning" @click="editar = false">Regresar</b-button>
@@ -174,6 +202,7 @@
                 editar: false,
                 blog: {
                     titulo: '',
+                    resumen: '',
                     articulo: '',
                     foto: ''
                 },
@@ -259,6 +288,7 @@
                 this.axios.put(`/blog/${item._id}`, item, config).then(res => {
                     const index = this.blogs.findIndex(b => b._id === res.data._id);
                     this.blogs[index].titulo = res.data.titulo;
+                    this.blogs[index].resumen = res.data.resumen;
                     this.blogs[index].articulo = res.data.articulo;
                     this.blogs[index].foto = res.data.foto;
                     this.mensaje.color = 'primary'; 

@@ -64,6 +64,19 @@
                         ></b-form-input> 
                     </b-form-group>
                     <b-form-group
+                        id="Resumen"
+                        label="Resumen"
+                        label-for="resumen"
+                    >
+                        <b-form-input
+                            id="resumen"
+                            v-model="imagen.resumen"
+                            type="text"
+                            required
+                            placeholder="Escribe el resumen de la imagen"
+                        ></b-form-input> 
+                    </b-form-group>
+                    <b-form-group
                         id="Foto"
                         label="Foto"
                         label-for="foto"
@@ -73,7 +86,7 @@
                             v-model="imagen.foto"
                             type="text"
                             required
-                            placeholder="Introduce la URL 'https://dominio.com/nombreimagen.tipodeimagen'"
+                            placeholder="Introduce la URL https://dominio.com/nombreimagen.tipodeimagen"
                         ></b-form-input> 
                         Las dimensiones de la imagen deben ser 1024x480 pixeles para un mejor funcionamiento.
                     </b-form-group>  
@@ -100,6 +113,19 @@
                         ></b-form-input> 
                     </b-form-group>
                     <b-form-group
+                        id="Resumen"
+                        label="Resumen"
+                        label-for="resumen"
+                    >
+                        <b-form-input
+                            id="resumen"
+                            v-model="imagen_e.resumen"
+                            type="text"
+                            required
+                            placeholder="Escribe el resumen de la imagen"
+                        ></b-form-input> 
+                    </b-form-group>
+                    <b-form-group
                         id="Foto"
                         label="Foto"
                         label-for="foto"
@@ -109,8 +135,9 @@
                             v-model="imagen_e.foto"
                             type="text"
                             required
-                            placeholder="Introduce la URL"
+                            placeholder="Introduce la URL https://dominio.com/nombreimagen.tipodeimagen"
                         ></b-form-input> 
+                        Las dimensiones de la imagen deben ser 1024x480 pixeles para un mejor funcionamiento.
                     </b-form-group>  
                     <b-button type="submit" variant="primary" class="mr-2">Editar</b-button>
                     <b-button type="submit" variant="warning" @click="editar = false">Regresar</b-button>
@@ -151,7 +178,7 @@
                 editar: false,
                 imagen: {
                     titulo: '',
-                    articulo: '',
+                    resumen: '',
                     foto: ''
                 },
                 imagen_e: {}
@@ -163,9 +190,6 @@
                 return Math.ceil(this.totalImagenes / this.limite);
             }
         },
-        /*created(){
-            this.listarImagenes();
-        },*/
         watch: {
             "$route.query.pagina":{
                 immediate: true,
@@ -192,13 +216,6 @@
                     console.log(e.respone)
                 })
             },
-            /*listarImagenes(){
-                this.axios.get('/Imagenes').then(res => {
-                    this.imagenes = res.data;
-                }).catch(e => {
-                    console.log(e.response);
-                })
-            },*/
             cambiarCrear(){
                 this.crear = true;
             },
@@ -236,6 +253,7 @@
                 this.axios.put(`/imagen/${item._id}`, item, config).then(res => {
                     const index = this.imagenes.findIndex(n => n._id === res.data._id);
                     this.imagenes[index].titulo = res.data.titulo;
+                    this.imagenes[index].resumen = res.data.resumen;
                     this.imagenes[index].foto = res.data.foto;
                     this.mensaje.color = 'primary'; 
                     this.mensaje.texto = 'Se actualizo con exito';

@@ -64,6 +64,19 @@
                         ></b-form-input> 
                     </b-form-group>
                     <b-form-group
+                        id="Resumen"
+                        label="Resumen"
+                        label-for="resumen"
+                    >
+                        <b-form-input
+                            id="resumen"
+                            v-model="noticia.resumen"
+                            type="text"
+                            required
+                            placeholder="Escribe el resumen de la imagen"
+                        ></b-form-input> 
+                    </b-form-group>
+                    <b-form-group
                         id="Artículo"
                         label="Artículo"
                         label-for="articulo"
@@ -85,8 +98,9 @@
                             v-model="noticia.foto"
                             type="text"
                             required
-                            placeholder="Introduce la URL"
+                            placeholder="Introduce la URL https://dominio.com/nombreimagen.tipodeimagen"
                         ></b-form-input> 
+                        Las dimensiones de la imagen deben ser 1000x500 pixeles para un mejor funcionamiento.
                     </b-form-group>  
                     <div class="d-flex justify-content-center">
                         <b-button type="submit" variant="primary" class="my-5 mx-2">Agregar</b-button>
@@ -111,6 +125,19 @@
                         ></b-form-input> 
                     </b-form-group>
                     <b-form-group
+                        id="Resumen"
+                        label="Resumen"
+                        label-for="resumen"
+                    >
+                        <b-form-input
+                            id="resumen"
+                            v-model="noticia_e.resumen"
+                            type="text"
+                            required
+                            placeholder="Escribe el resumen de la imagen"
+                        ></b-form-input> 
+                    </b-form-group>
+                    <b-form-group
                         id="Artículo"
                         label="Artículo"
                         label-for="articulo"
@@ -132,8 +159,9 @@
                             v-model="noticia_e.foto"
                             type="text"
                             required
-                            placeholder="Introduce la URL"
+                            placeholder="Introduce la URL https://dominio.com/nombreimagen.tipodeimagen"
                         ></b-form-input> 
+                        Las dimensiones de la imagen deben ser 1000x500 pixeles para un mejor funcionamiento.
                     </b-form-group>  
                     <b-button type="submit" variant="primary" class="mr-2">Editar</b-button>
                     <b-button type="submit" variant="warning" @click="editar = false">Regresar</b-button>
@@ -174,6 +202,7 @@
                 editar: false,
                 noticia: {
                     titulo: '',
+                    resumen: '',
                     articulo: '',
                     foto: ''
                 },
@@ -186,9 +215,6 @@
                 return Math.ceil(this.totalNoticias / this.limite);
             }
         },
-        /*created(){
-            this.listarNoticias();
-        },*/
         watch: {
             "$route.query.pagina":{
                 immediate: true,
@@ -215,13 +241,6 @@
                     console.log(e.respone)
                 })
             },
-            /*listarNoticias(){
-                this.axios.get('/noticias').then(res => {
-                    this.noticias = res.data;
-                }).catch(e => {
-                    console.log(e.response);
-                })
-            },*/
             cambiarCrear(){
                 this.crear = true;
             },
@@ -259,6 +278,7 @@
                 this.axios.put(`/noticia/${item._id}`, item, config).then(res => {
                     const index = this.noticias.findIndex(n => n._id === res.data._id);
                     this.noticias[index].titulo = res.data.titulo;
+                    this.noticias[index].resumen = res.data.resumen;
                     this.noticias[index].articulo = res.data.articulo;
                     this.noticias[index].foto = res.data.foto;
                     this.mensaje.color = 'primary'; 

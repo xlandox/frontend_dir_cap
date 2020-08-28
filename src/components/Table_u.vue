@@ -366,7 +366,6 @@
                 roles: [
                     { value: null, text: 'Selecciona el rol', disabled: true },
                     { value: 'Usuario', text: 'Usuario' },
-                    { value: 'Exponente', text: 'Exponente' },
                     { value: 'Administrador', text: 'Administrador' }
                 ],
                 usuario_e: {}
@@ -378,9 +377,6 @@
                 return Math.ceil(this.totalUsuarios / this.limite);
             }
         },
-        /*created(){
-            this.listarUsuarios();
-        },*/
         watch: {
             "$route.query.pagina":{
                 immediate: true,
@@ -412,18 +408,6 @@
                     console.log(e.respone)
                 })
             },
-            /*listarUsuarios(){
-                let config = {
-                    headers: {
-                        token: this.token
-                    }
-                }
-                this.axios.get('/usuarios', config).then(res => {
-                    this.usuarios = res.data.usuarioDB;
-                }).catch(e => {
-                    console.log(e.response);
-                })
-            },*/
             cambiarCrear(){
                 this.crear = true;
             },
