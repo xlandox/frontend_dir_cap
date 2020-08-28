@@ -83,6 +83,8 @@ export default {
                 this.blog3.titulo = this.blogs[this.totalBlogs - 3].titulo;
                 this.blog3.resumen = this.blogs[this.totalBlogs - 3].resumen;
                 this.blog3.foto = this.blogs[this.totalBlogs - 3].foto;
+            }).catch(e => {
+                console.log(e.response);
             })
         }
     }
