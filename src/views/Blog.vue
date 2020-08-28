@@ -1,20 +1,22 @@
 <template>
     <div class="blog">
         <Title msg="Titulo del Blog"/>
-        <b-row>
-            <b-col cols="12" md="6" class="pb-5">
-                <b-img src="https://picsum.photos/1000/500?random=1" fluid alt="Responsive image"></b-img>
-            </b-col>
-            <b-col cols="12" md="6" class="text-justify">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere magni ullam culpa a sed,
-                    quaerat voluptatibus hic dolorem nihil nam quia saepe placeat voluptatum, delectus ipsa esse adipisci. 
-                    Consequuntur, mollitia?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere magni ullam culpa a sed,
-                    quaerat voluptatibus hic dolorem nihil nam quia saepe placeat voluptatum, delectus ipsa esse adipisci. 
-                    Consequuntur, mollitia?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere magni ullam culpa a sed,
-                    quaerat voluptatibus hic dolorem nihil nam quia saepe placeat voluptatum, delectus ipsa esse adipisci. 
-                    Consequuntur, mollitia?</p>
+        <b-row class="justify-content-center">
+            <b-col md="8">
+                <div class="mb-5">
+                    <b-img src="https://picsum.photos/900/250?random=1" fluid alt="Responsive image"></b-img>
+                </div>
+                <div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere magni ullam culpa a sed,
+                        quaerat voluptatibus hic dolorem nihil nam quia saepe placeat voluptatum, delectus ipsa esse adipisci. 
+                        Consequuntur, mollitia?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere magni ullam culpa a sed,
+                        quaerat voluptatibus hic dolorem nihil nam quia saepe placeat voluptatum, delectus ipsa esse adipisci. 
+                        Consequuntur, mollitia?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere magni ullam culpa a sed,
+                        quaerat voluptatibus hic dolorem nihil nam quia saepe placeat voluptatum, delectus ipsa esse adipisci. 
+                        Consequuntur, mollitia?</p>
+                </div>
             </b-col>
         </b-row>
     </div>
