@@ -16,7 +16,6 @@
                     cumque velit laboriosam at aliquam soluta, explicabo tempore quidem corporis, 
                     quis quae magnam ut architecto saepe! Vero, accusamus dicta.
                     </b-card-text>
-                    <b-button :to="{name:'Curso'}" variant="primary">Ver curso</b-button>
                 </b-card>
             </b-col>
             <b-col cols="12" md="6" lg="4" class="d-flex justify-content-center">
@@ -34,7 +33,6 @@
                     cumque velit laboriosam at aliquam soluta, explicabo tempore quidem corporis, 
                     quis quae magnam ut architecto saepe! Vero, accusamus dicta.
                     </b-card-text>
-                    <b-button :to="{name:'Curso'}" variant="primary">Ver curso</b-button>
                 </b-card>
             </b-col>
             <b-col cols="12" md="6" lg="4" class="d-flex justify-content-center">
@@ -52,7 +50,6 @@
                     cumque velit laboriosam at aliquam soluta, explicabo tempore quidem corporis, 
                     quis quae magnam ut architecto saepe! Vero, accusamus dicta.
                     </b-card-text>
-                    <b-button :to="{name:'Curso'}" variant="primary">Ver curso</b-button>
                 </b-card>
             </b-col>
             <b-col cols="12" md="6" lg="4" class="d-flex justify-content-center">
@@ -70,7 +67,6 @@
                     cumque velit laboriosam at aliquam soluta, explicabo tempore quidem corporis, 
                     quis quae magnam ut architecto saepe! Vero, accusamus dicta.
                     </b-card-text>
-                    <b-button href="#" variant="primary">Ver curso</b-button>
                 </b-card>
             </b-col>
             <b-col cols="12" md="6" lg="4" class="d-flex justify-content-center">
@@ -88,7 +84,6 @@
                     cumque velit laboriosam at aliquam soluta, explicabo tempore quidem corporis, 
                     quis quae magnam ut architecto saepe! Vero, accusamus dicta.
                     </b-card-text>
-                    <b-button href="#" variant="primary">Ver curso</b-button>
                 </b-card>
             </b-col>
             <b-col cols="12" md="6" lg="4" class="d-flex justify-content-center">
@@ -106,7 +101,6 @@
                     cumque velit laboriosam at aliquam soluta, explicabo tempore quidem corporis, 
                     quis quae magnam ut architecto saepe! Vero, accusamus dicta.
                     </b-card-text>
-                    <b-button href="#" variant="primary">Ver curso</b-button>
                 </b-card>
             </b-col>
         </b-row>

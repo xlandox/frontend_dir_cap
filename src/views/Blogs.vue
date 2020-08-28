@@ -12,8 +12,8 @@
     export default {
         name: 'Blogs',
         components: {
-          Title,
-          CardImage
+            Title,
+            CardImage
         }
     }
 </script>

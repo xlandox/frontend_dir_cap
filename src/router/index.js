@@ -17,29 +17,14 @@ const routes = [
     component: () => import('../views/Cursos.vue')
   },
   {
-    path: '/curso',
-    name: 'Curso',
-    component: () => import('../views/Curso.vue')
-  },
-  {
     path: '/noticias',
     name: 'Noticias',
     component: () => import('../views/Noticias.vue')
   },
   {
-    path: '/noticia',
-    name: 'Noticia',
-    component: () => import('../views/Noticia.vue')
-  },
-  {
     path: '/blogs',
     name: 'Blogs',
     component: () => import('../views/Blogs.vue')
-  },
-  {
-    path: '/blog',
-    name: 'Blog',
-    component: () => import('../views/Blog.vue')
   },
   {
     path: '/nosotros',

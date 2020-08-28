@@ -19,7 +19,7 @@
         <CardRight></CardRight>
         <b-row class="mt-5 mr-5">
             <b-col cols="12" class="d-flex justify-content-end">
-                <b-button variant="outline-success" :to="{name:'Noticias'}">Todo sobre las noticias mas destacadas</b-button>
+                <b-button variant="outline-success" :to="{name:'Noticias'}">Todo sobre las noticias más destacadas</b-button>
             </b-col>
         </b-row>
     </div>

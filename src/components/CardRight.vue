@@ -6,7 +6,6 @@
                     <b-card-text>
                         {{noticia1.resumen}}
                     </b-card-text>
-                    <b-button variant="info" :to="{name:'Noticia'}">Ver más</b-button>
                 </b-card>
             </b-col>
         </b-row>
@@ -16,7 +15,6 @@
                     <b-card-text>
                         {{noticia2.resumen}}
                     </b-card-text>
-                    <b-button variant="info" :to="{name:'Noticia'}">Ver más</b-button>
                 </b-card>
             </b-col>
         </b-row>
@@ -26,7 +24,6 @@
                     <b-card-text>
                         {{noticia3.resumen}}
                     </b-card-text>
-                    <b-button variant="info" :to="{name:'Noticia'}">Ver más</b-button>
                 </b-card>  
             </b-col>
         </b-row>
