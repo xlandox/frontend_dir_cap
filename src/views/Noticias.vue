@@ -9,7 +9,7 @@
                             <b-card-text>
                                 {{item.resumen}}
                             </b-card-text>
-                            <b-button @click="cambiarEditar(item._id)" variant="danger">Ver noticia</b-button>
+                            <b-button @click="cambiarVer(item._id)" variant="danger">Ver noticia</b-button>
                         </b-card>
                     </div>
                     <div>
@@ -97,7 +97,7 @@
                     console.log(e.respone)
                 })
             },
-            cambiarEditar(id){
+            cambiarVer(id){
                 this.editar = true;
                 this.axios.get(`/noticia/${id}`).then(res => {
                     this.noticia = res.data;

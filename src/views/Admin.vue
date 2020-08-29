@@ -12,6 +12,7 @@
                                 <b-nav vertical class="mt-5">
                                     <b-nav-item @click="mostrar_u()">Usuarios</b-nav-item>
                                     <b-nav-item @click="mostrar_c()">Carrusel</b-nav-item>
+                                    <b-nav-item @click="mostrar_cu()">Cursos</b-nav-item>
                                     <b-nav-item @click="mostrar_b()">Blogs</b-nav-item>
                                     <b-nav-item @click="mostrar_n()">Noticias</b-nav-item>
                                 </b-nav>
@@ -28,6 +29,9 @@
         <div v-if="type === 'c'">
             <Table_c></Table_c>
         </div>
+        <div v-if="type === 'cu'">
+            <Table_cu></Table_cu>
+        </div>
         <div v-if="type === 'b'">
             <Table_b></Table_b>
         </div>
@@ -41,6 +45,7 @@
     import Title from '@/components/Title.vue'
     import Table_u from '@/components/Table_u.vue'
     import Table_c from '@/components/Table_c.vue'
+    import Table_cu from '@/components/Table_cu.vue'
     import Table_b from '@/components/Table_b.vue'
     import Table_n from '@/components/Table_n.vue'
 
@@ -55,6 +60,7 @@
             Title,
             Table_u,
             Table_c,
+            Table_cu,
             Table_b,
             Table_n
         },
@@ -64,6 +70,9 @@
             },
             mostrar_c(){
                 this.type = 'c'
+            },
+            mostrar_cu(){
+                this.type = 'cu'
             },
             mostrar_b(){
                 this.type = 'b'
