@@ -47,7 +47,7 @@ export default {
     },
     methods: {
         listarNoticias() {
-            this.axios.get('noticiass').then(res => {
+            this.axios.get('/noticiass').then(res => {
                 this.noticias = res.data.noticiaDB;
                 this.totalNoticias = res.data.totalNoticias;
                 this.noticia1.titulo = this.noticias[this.totalNoticias - 1].titulo;

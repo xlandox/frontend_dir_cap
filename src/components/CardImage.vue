@@ -71,7 +71,7 @@ export default {
     },
     methods: {
         listarBlogs() {
-            this.axios.get('blogss').then(res => {
+            this.axios.get('/blogss').then(res => {
                 this.blogs = res.data.blogDB;
                 this.totalBlogs = res.data.totalBlogs;
                 this.blog1.titulo = this.blogs[this.totalBlogs - 1].titulo;
