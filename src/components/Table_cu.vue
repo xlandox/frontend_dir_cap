@@ -80,6 +80,19 @@
                         Las dimensiones de la imagen deben ser 600x300 pixeles para un mejor funcionamiento.
                     </b-form-group>
                     <b-form-group
+                        id="Resumen"
+                        label="Resumen"
+                        label-for="resumen"
+                    >
+                        <b-form-input
+                            id="resumen"
+                            v-model="curso.resumen"
+                            type="text"
+                            required
+                            placeholder="Escribe una pequeña descripción del curso"
+                        ></b-form-input> 
+                    </b-form-group>
+                    <b-form-group
                         id="Descripcion"
                         label="Descripcion"
                         label-for="descripcion"
@@ -87,7 +100,7 @@
                         <b-form-textarea
                             id="descripcion"
                             v-model="curso.des"
-                            placeholder="Redacta una descripcion ..."
+                            placeholder="Redacta la información ..."
                             rows="6"
                         ></b-form-textarea>
                     </b-form-group> 
@@ -163,6 +176,19 @@
                             type="text"
                             required
                             placeholder="Introduce la URL https://dominio.com/nombreimagen.tipodeimagen"
+                        ></b-form-input> 
+                    </b-form-group>
+                    <b-form-group
+                        id="Resumen"
+                        label="Resumen"
+                        label-for="resumen"
+                    >
+                        <b-form-input
+                            id="resumen"
+                            v-model="curso_e.resumen"
+                            type="text"
+                            required
+                            placeholder="Escribe una pequeña descripción del curso"
                         ></b-form-input> 
                     </b-form-group>
                     <b-form-group
@@ -256,6 +282,7 @@
                 curso: {
                     nom: '',
                     foto: '',
+                    resumen: '',
                     des: '',
                     f_ini: '',
                     f_fin: '',

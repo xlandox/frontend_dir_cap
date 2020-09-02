@@ -20,11 +20,9 @@ export default new Vuex.Store({
         state.usuarioDB = ''
       }else{
         state.usuarioDB = decode(payload);
+        console.log(decode(payload));
         switch(state.usuarioDB.data.rol){
           case 'Usuario':
-            router.push({name: 'Home'});
-            break;
-          case 'Exponente':
             router.push({name: 'Home'});
             break;
           case 'Administrador':

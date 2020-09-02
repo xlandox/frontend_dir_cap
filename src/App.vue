@@ -4,7 +4,7 @@
             <b-container fluid>
                 <b-navbar toggleable="md" type="dark" variant="primary" fixed="top">
                     <b-navbar-brand :to="{name: 'Home'}">
-                        Icono
+                        <b-img :src="require('public/')" width="50"></b-img>
                     </b-navbar-brand>
                     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
                     <b-collapse id="nav-collapse" is-nav>
@@ -40,7 +40,7 @@
             <b-container fluid class="footer mt-5"> 
                 <b-row  class="text-left text-white p-5">
                     <b-col cols="12" md="6" lg="3">
-                        <h5>Icono</h5>
+                        <b-img src="https://i.imgur.com/qtlBhZC.png" width="200"></b-img>
                     </b-col>
                     <b-col cols="12" md="6" lg="3">
                         <h5 class="mb-2">Navegación</h5>
@@ -78,6 +78,11 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
+    data(){
+        return {
+            mainProps: { blank: true, blankColor: '#777', width: 75, height: 75, class: 'm1' }
+        }
+    },
     methods:{
         ...mapActions(['cerrarSesion', 'leerToken'])
     },
