@@ -4,7 +4,7 @@
             <b-container fluid>
                 <b-navbar toggleable="md" type="dark" variant="primary" fixed="top">
                     <b-navbar-brand :to="{name: 'Home'}">
-                        <b-img :src="require('public/')" width="50"></b-img>
+                        <b-img src="https://i.imgur.com/NzPGBAU.png" width="50"></b-img>
                     </b-navbar-brand>
                     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
                     <b-collapse id="nav-collapse" is-nav>
